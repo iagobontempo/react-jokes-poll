@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
 
-import { Container } from './styles'
+import { Container, JokeHeader, List } from './styles'
 import Joke from '../Joke/Joke';
+
+// ! NEED ADD SCROLL AT THE LIST CONTAINER 
 
 export class JokeList extends Component {
     render() {
         return (
             <Container>
-                <h1>Jokes List</h1>
-                <Joke />
+                <JokeHeader>
+                    <h1>Jokes List</h1>
+                    <button> GET NEW JOKES </button>
+                </JokeHeader>
+                <List>
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                    <Joke />
+                </List>
             </Container>
         )
     }
