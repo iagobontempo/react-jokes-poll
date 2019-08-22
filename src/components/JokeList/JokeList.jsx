@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Container, JokeHeader, List } from './styles'
 import Joke from '../Joke/Joke';
 
-
+import { FaLaugh } from 'react-icons/fa'
 
 export class JokeList extends Component {
     static defaultProps = {
@@ -13,6 +13,7 @@ export class JokeList extends Component {
 
     state = {
         jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
+        loading: false
     }
 
     componentDidMount = () => {
@@ -23,6 +24,7 @@ export class JokeList extends Component {
 
     getJokes = async () => { //! Changed let to newJokes to be explicit
         let newJokes = []
+        this.setState({ loading: true })
         while (newJokes.length < this.props.numJokesToGet) {
             let response = await axios.get("https://icanhazdadjoke.com/", {
                 headers: { Accept: 'application/json' } // How to pass something inside a header
@@ -30,6 +32,7 @@ export class JokeList extends Component {
             newJokes.push({ id: response.data.id, text: response.data.joke, votes: 0 })
         }
         this.setState(existingState => ({ // ! Just changed the oldState to existingState to keep clear what i'm doing
+            loading: false,
             jokes: [...existingState.jokes, ...newJokes] // Putting inside state jokes, all the existing jokes and the new jokes
         }),
             () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
@@ -38,7 +41,7 @@ export class JokeList extends Component {
 
     handleClick = (e) => {
         e.preventDefault();
-        this.getJokes()
+        this.setState({ loading: true }, this.getJokes)
     }
 
     handleVote = (id, delta) => {
@@ -59,17 +62,25 @@ export class JokeList extends Component {
                     <h1>Jokes List</h1>
                     <button onClick={this.handleClick}> GET NEW JOKES </button>
                 </JokeHeader>
-                <List>
-                    {this.state.jokes.map(j => (
-                        <Joke key={j.id}
-                            id={j.id}
-                            text={j.text}
-                            votes={j.votes}
-                            upvote={() => this.handleVote(j.id, 1)}
-                            downvote={() => this.handleVote(j.id, -1)}
-                        />
-                    ))}
-                </List>
+                {this.state.loading ?
+                    <List>
+                        <section>
+                            <FaLaugh color={'#fff'} size={80} />
+                            <h1>Loading...</h1>
+                        </section>
+                    </List>
+                    :
+                    <List>
+                        {this.state.jokes.map(j => (
+                            <Joke key={j.id}
+                                id={j.id}
+                                text={j.text}
+                                votes={j.votes}
+                                upvote={() => this.handleVote(j.id, 1)}
+                                downvote={() => this.handleVote(j.id, -1)}
+                            />
+                        ))}
+                    </List>}
             </Container>
         )
     }
