@@ -25,11 +25,11 @@ export const ActionDiv = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 46px;
-        height: 46px;
+        width: 40px;
+        height: 40px;
         background: #eeeeee;
-        border-radius: 25px;
-        border: 3px solid #145;
+        border-radius: 20px;
+        border: 3px solid #f44336;
         -webkit-box-shadow: 0px 5px 8px -1px rgba(0,0,0,0.5);
         -moz-box-shadow: 0px 5px 8px -1px rgba(0,0,0,0.5);
         box-shadow: 0px 5px 8px -1px rgba(0,0,0,0.5);
@@ -52,6 +52,10 @@ export const ReactionDiv = styled.div`
     justify-content: center;
     align-items: center;
     width: 10%;
-    margin-top: -5px;
+    margin-top: -4px;
     font-size: 40px;
+
+    span {
+        text-shadow: 0px 3px 4px rgba(0,0,0,0.41);
+    }
 `

@@ -37,4 +37,6 @@ export const List = styled.div`
     width: 800px;
     height: 600px;
     overflow: auto; 
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4); 
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
 `
