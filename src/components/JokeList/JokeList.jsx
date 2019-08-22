@@ -59,8 +59,13 @@ export class JokeList extends Component {
         return (
             <Container>
                 <JokeHeader>
-                    <h1>Jokes List</h1>
-                    <button onClick={this.handleClick}> GET NEW JOKES </button>
+                    <h1> <p>DAD</p>Jokes</h1>
+                    <span>
+                        <p>
+                            🤣
+                        </p>
+                    </span>
+                    <button onClick={this.handleClick}>NEW JOKES </button>
                 </JokeHeader>
                 {this.state.loading ?
                     <List>
