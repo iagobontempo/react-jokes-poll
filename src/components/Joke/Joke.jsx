@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Container, ActionDiv, ReactionSpan, JokeDiv } from './styles'
+import { Container, ActionDiv, ReactionDiv, JokeDiv } from './styles'
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa'
 
 export class Joke extends Component {
@@ -9,21 +9,24 @@ export class Joke extends Component {
             <Container>
                 <ActionDiv>
                     <button onClick={this.props.upvote}>
-                        <FaAngleUp />
+                        <FaAngleUp size={24} />
                     </button>
                     <div>
                         <p>{this.props.votes}</p>
                     </div>
                     <button onClick={this.props.downvote}>
-                        <FaAngleDown />
+                        <FaAngleDown size={24} />
                     </button>
                 </ActionDiv>
+
                 <JokeDiv>
                     <p>{this.props.text}</p>
                 </JokeDiv>
-                <ReactionSpan role="img" aria-label="smile">
-                    😁
-                </ReactionSpan>
+
+                <ReactionDiv>
+                    <span>😁</span>
+                </ReactionDiv>
+
             </Container>
         )
     }

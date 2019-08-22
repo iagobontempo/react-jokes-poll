@@ -11,11 +11,14 @@ export const Container = styled.div`
 export const JokeHeader = styled.div`
     background-color: #00aace;
     width: 220px;
-    height: 600px;
+    height: 640px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.61); 
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.61);
+    z-index: 999;
 
 
     h1 {
@@ -33,5 +36,5 @@ export const List = styled.div`
     background-color: #bff4ff;
     width: 800px;
     height: 600px;
-    overflow:auto; 
+    overflow: auto; 
 `

@@ -8,7 +8,7 @@ import Joke from '../Joke/Joke';
 
 export class JokeList extends Component {
     static defaultProps = {
-        numJokesToGet: 10
+        numJokesToGet: 1
     }
 
     state = {
