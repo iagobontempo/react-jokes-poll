@@ -4,18 +4,24 @@ import axios from 'axios'
 import { Container, JokeHeader, List } from './styles'
 import Joke from '../Joke/Joke';
 
-// ! NEED ADD SCROLL AT THE LIST CONTAINER 
+
 
 export class JokeList extends Component {
     static defaultProps = {
-        numJokesToGet: 1
+        numJokesToGet: 10
     }
 
     state = {
-        jokes: [],
+        jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
     }
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
+        if (this.state.jokes.length === 0) {
+            this.getJokes()
+        }
+    }
+
+    getJokes = async () => {
         let jokes = []
         while (jokes.length < this.props.numJokesToGet) {
             let response = await axios.get("https://icanhazdadjoke.com/", {
@@ -24,6 +30,7 @@ export class JokeList extends Component {
             jokes.push({ id: response.data.id, text: response.data.joke, votes: 0 })
         }
         this.setState({ jokes: jokes }) // The second jokes its the LET array created at begining of the componentDidMount
+        window.localStorage.setItem("jokes", JSON.stringify(jokes)) // Putting jokes on localStorage. Needs to convert JSON to strings
     }
 
     handleVote = (id, delta) => {
