@@ -33,4 +33,5 @@ export const List = styled.div`
     background-color: #bff4ff;
     width: 800px;
     height: 600px;
+    overflow:auto; 
 `

@@ -23,7 +23,7 @@ export const JokeDiv = styled.div`
     width: 75%;
 `
 
-export const ReactionDiv = styled.div`
+export const ReactionSpan = styled.span`
     background: #ccf8ff;
     display: flex;
     justify-content: center;
