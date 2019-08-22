@@ -8,16 +8,18 @@ export class Joke extends Component {
         return (
             <Container>
                 <ActionDiv>
-                    <button>
+                    <button onClick={this.props.upvote}>
                         <FaAngleUp />
                     </button>
-                    <div>STATUS</div>
-                    <button>
+                    <div>
+                        <p>{this.props.votes}</p>
+                    </div>
+                    <button onClick={this.props.downvote}>
                         <FaAngleDown />
                     </button>
                 </ActionDiv>
                 <JokeDiv>
-                    <p>{this.props.content}</p>
+                    <p>{this.props.text}</p>
                 </JokeDiv>
                 <ReactionSpan role="img" aria-label="smile">
                     😁

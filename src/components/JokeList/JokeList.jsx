@@ -21,16 +21,19 @@ export class JokeList extends Component {
             let response = await axios.get("https://icanhazdadjoke.com/", {
                 headers: { Accept: 'application/json' } // How to pass something inside a header
             })
-            jokes.push(response.data.joke)
+            jokes.push({ id: response.data.id, text: response.data.joke, votes: 0 })
         }
         this.setState({ jokes: jokes }) // The second jokes its the LET array created at begining of the componentDidMount
     }
 
-    upvote = () => {
-
-    }
-    downvote = () => {
-
+    handleVote = (id, delta) => {
+        this.setState(
+            oldState => ({
+                jokes: oldState.jokes.map(j =>
+                    j.id === id ? { ...j, votes: j.votes + delta } : j
+                )
+            })
+        )
     }
 
     render() {
@@ -42,7 +45,13 @@ export class JokeList extends Component {
                 </JokeHeader>
                 <List>
                     {this.state.jokes.map(j => (
-                        <Joke id={j.id} content={j} />
+                        <Joke key={j.id}
+                            id={j.id}
+                            text={j.text}
+                            votes={j.votes}
+                            upvote={() => this.handleVote(j.id, 1)}
+                            downvote={() => this.handleVote(j.id, -1)}
+                        />
                     ))}
                 </List>
             </Container>
