@@ -56,6 +56,8 @@ export class JokeList extends Component {
     }
 
     render() {
+        let sortedJokes = this.state.jokes.sort((a, b) => b.votes - a.votes);
+
         return (
             <Container>
                 <JokeHeader>
@@ -76,7 +78,7 @@ export class JokeList extends Component {
                     </List>
                     :
                     <List>
-                        {this.state.jokes.map(j => (
+                        {sortedJokes.map(j => (
                             <Joke key={j.id}
                                 id={j.id}
                                 text={j.text}
